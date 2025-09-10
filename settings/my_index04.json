@@ -1,0 +1,20 @@
+[
+    {
+        "view_mode": 3,
+        "hosei_mode": 0,
+        "upright": false,
+        "projection": 5,
+        "optcl0": 50,
+        "optcl1": 230,
+        "limsup": 120,
+        "liminf": 26,
+        "ang_x": 0,
+        "ang_z": 0,
+        "twidth": 640,
+        "theight": 240,
+        "dhagv": 180,
+        "fg": [120, 116, 114],
+        "simg": "img_0111x.jpg",
+        "str0": "3.,3."
+    }
+]

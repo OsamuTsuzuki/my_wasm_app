@@ -1,0 +1,18 @@
+[
+    {
+        "view_mode": 6,
+        "hosei_mode": 1,
+        "upright": true,
+        "projection": 0,
+        "limsup": 95,
+        "liminf": 0,
+        "ang_x": 0,
+        "ang_z": 0,
+        "twidth": 640,
+        "theight": 320,
+        "dhagv": 190,
+        "simg": "dscn2322c.png",
+        "str0": "5,5,8,2,8,1",
+        "str1": "delta_h,delta_v,nstep1,nstep2,atn(index),resize"
+    }
+]

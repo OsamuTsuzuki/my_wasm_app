@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rust + WASM Flip Book</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="common.css">
+</head>
+<body>
+    <div class="container">
+        <div data-include="partials/header.html"></div>
+        <canvas id="display"></canvas>
+
+        <!-- Customizable Tag -->
+        <div class="title">球面補正 / 球面射影 / 正立像</div>
+        <div class="description">
+            ここに画像の説明文を書いてください<br>
+            ここに画像の説明文を書いてください
+            <ul>
+            <li>一番目のリスト項目</li>
+            <li>二番目のリスト項目</li>
+            <li>三番目のリスト項目</li>
+            </ul>
+        </div>
+
+        <div data-include="partials/controls.html"></div>
+        <div id="helpText" hidden data-include="partials/help.html"></div>
+        <div data-include="partials/footer.html"></div>
+    </div>
+    <script type="module" src="common.js"></script>
+</body>
+</html>
