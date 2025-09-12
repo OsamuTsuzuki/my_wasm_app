@@ -1,0 +1,15 @@
+{
+  "name": "flip_book",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "flip_book_bg.wasm",
+    "flip_book.js",
+    "flip_book.d.ts"
+  ],
+  "main": "flip_book.js",
+  "types": "flip_book.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
