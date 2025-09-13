@@ -137,18 +137,18 @@ class FrameRenderer {
 
     const renderer = new FrameRenderer(canvas);
 
-    // キー → 信号マップ（3は欠番）
+    // キー → 信号マップ
     const KeyToSignal = {
         "h": 4,
         "j": 2,
         "k": 8,
         "l": 6,
-        "i": 11,  // 信号11 <- 信号7
-        "o": 10,  // 信号10 <- 信号9
+        "i": 11,
+        "o": 10,
     };
 
     // 起動時：初期画像（信号1）
-    await renderer.requestFrame(0);  // 信号0 <- 信号1
+    await renderer.requestFrame(0);
 
     // 状態
     let autoMode = false; // 自動パン中か
@@ -183,7 +183,7 @@ class FrameRenderer {
         if (ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
             autoMode = true; stopAllLoops();
             const sig = ev.key === "H" ? 4 : 6;
-            renderer.startAuto(sig, 30); // 80
+            renderer.startAuto(sig, 30); // 80から修正
             return;
         }
 
@@ -192,7 +192,7 @@ class FrameRenderer {
         if (!ev.shiftKey && KeyToSignal.hasOwnProperty(lower)) {
             autoMode = false; renderer.stopAuto();
             const sig = KeyToSignal[lower];
-            renderer.startHoldLoop(sig, 30);  // 125
+            renderer.startHoldLoop(sig, 30);  // 125から修正
             return;
     
         }
@@ -249,5 +249,72 @@ class FrameRenderer {
         if (ev.button !== 0) return;
         renderer.stopHoldLoop();
     });
+
+    // ===== タッチ操作（スマホ用） =====
+    let touchStartX = 0, touchStartY = 0, touchStartDist = 0;
+
+    function getDistance(touches) {
+        const dx = touches[0].clientX - touches[1].clientX;
+        const dy = touches[0].clientY - touches[1].clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    // タッチ開始
+    canvas.addEventListener("touchstart", (ev) => {
+        if (ev.touches.length === 1) {
+            // 1本指スワイプ
+            touchStartX = ev.touches[0].clientX;
+            touchStartY = ev.touches[0].clientY;
+        } else if (ev.touches.length === 2) {
+            // 2本指ピンチ
+            touchStartDist = getDistance(ev.touches);
+        }
+    }, { passive: true });
+
+    // スワイプ判定（指を動かしている間に連続送信開始）
+    canvas.addEventListener("touchmove", (ev) => {
+        if (ev.touches.length === 1) {
+            const dx = ev.touches[0].clientX - touchStartX;
+            const dy = ev.touches[0].clientY - touchStartY;
+
+            const threshold = 20; // スワイプ判定のしきい値(px)
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > threshold) {
+                // 横スワイプ
+                if (dx > 0) {
+                    renderer.startHoldLoop(4, 30); // → 信号4
+                } else {
+                    renderer.startHoldLoop(6, 30); // ← 信号6
+                }
+            } else if (Math.abs(dy) > threshold) {
+                // 縦スワイプ
+                if (dy > 0) {
+                    renderer.startHoldLoop(8, 30); // ↓ 信号8
+                } else {
+                    renderer.startHoldLoop(2, 30); // ↑ 信号2
+                }
+            }
+        } else if (ev.touches.length === 2) {
+            // ピンチ操作
+            const dist = getDistance(ev.touches);
+            const diff = dist - touchStartDist;
+            const threshold = 10;
+
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    renderer.startHoldLoop(10, 80); // ピンチアウト → 信号10
+                } else {
+                    renderer.startHoldLoop(11, 80); // ピンチイン → 信号11
+                }
+                touchStartDist = dist;
+            }
+        }
+    }, { passive: true });
+
+    // 指を離したら停止（1本でも2本でも止める）
+    canvas.addEventListener("touchend", (ev) => {
+        if (ev.touches.length === 0) {
+            renderer.stopHoldLoop();
+        }
+    }, { passive: true });
 
 })();
