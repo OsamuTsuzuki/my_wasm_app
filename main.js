@@ -150,6 +150,13 @@ class FrameRenderer {
     // 起動時：初期画像（信号0）
     await renderer.requestFrame(0);
 
+    // ===== 自動パン設定（JSON "auto" フィールド対応） =====
+    if ("auto" in mainConf) {
+        const sig = mainConf.auto ? 6 : 4;
+        renderer.startAuto(sig, 30);   // ← 既存の機能を活用
+        autoMode = true;
+        console.log(`自動パン開始: 信号${sig}`);
+    }
     // 状態
     let autoMode = false; // 自動パン中か
 
@@ -316,13 +323,5 @@ class FrameRenderer {
             renderer.stopHoldLoop();
         }
     }, { passive: true });
-
-    // ===== 自動パン設定（JSON "auto" フィールド対応） =====
-    if ("auto" in mainConf) {
-        const sig = mainConf.auto ? 6 : 4;
-        renderer.startAuto(sig, 30);   // 既存の startAuto を流用
-        autoMode = true;
-        console.log(`自動パン開始: 信号${sig}`);
-    }
 
 })();
