@@ -147,7 +147,7 @@ class FrameRenderer {
         "o": 10,
     };
 
-    // 起動時：初期画像（信号1）
+    // 起動時：初期画像（信号0）
     await renderer.requestFrame(0);
 
     // 状態
@@ -301,9 +301,9 @@ class FrameRenderer {
 
             if (Math.abs(diff) > threshold) {
                 if (diff > 0) {
-                    renderer.startHoldLoop(10, 80); // ピンチアウト → 信号10
+                    renderer.startHoldLoop(11, 80); // ピンチアウト → 信号11
                 } else {
-                    renderer.startHoldLoop(11, 80); // ピンチイン → 信号11
+                    renderer.startHoldLoop(10, 80); // ピンチイン → 信号10
                 }
                 touchStartDist = dist;
             }
@@ -316,5 +316,13 @@ class FrameRenderer {
             renderer.stopHoldLoop();
         }
     }, { passive: true });
+
+    // ===== 自動パン設定（JSON "auto" フィールド対応） =====
+    if ("auto" in mainConf) {
+        const sig = mainConf.auto ? 6 : 4;
+        renderer.startAuto(sig, 30);   // 既存の startAuto を流用
+        autoMode = true;
+        console.log(`自動パン開始: 信号${sig}`);
+    }
 
 })();
