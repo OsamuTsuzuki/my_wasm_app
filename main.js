@@ -150,8 +150,8 @@ class FrameRenderer {
     // 起動時：初期画像（信号0）
     await renderer.requestFrame(0);
 
-    // document.addEventListener("keydown", stopAutoScroll);
-    // document.addEventListener("mousedown", stopAutoScroll);
+    document.addEventListener("keydown", stopAutoScroll);
+    document.addEventListener("mousedown", stopAutoScroll);
 
     // ===== 自動パン設定（JSON "auto" フィールド対応） =====
     if ("auto" in mainConf) {
@@ -168,6 +168,14 @@ class FrameRenderer {
     function stopAllLoops() {
         renderer.stopHoldLoop();
         renderer.stopAuto();
+    }
+
+    function stopAutoScroll() {
+        if (autoMode) {
+            stopAllLoops();
+            autoMode = false;
+            console.log("自動パンをユーザー操作で停止");
+        }
     }
 
     // Keydown（1枚送り or 押下連続 or 自動開始）
