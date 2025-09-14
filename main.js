@@ -150,8 +150,8 @@ class FrameRenderer {
     // 起動時：初期画像（信号0）
     await renderer.requestFrame(0);
 
-    document.addEventListener("keydown", stopAuto);
-    document.addEventListener("mousedown", stopAuto);
+    document.addEventListener("keydown", stopAllLoops);
+    document.addEventListener("mousedown", stopAllLoops);
 
     // ===== 自動パン設定（JSON "auto" フィールド対応） =====
     if ("auto" in mainConf) {
