@@ -169,41 +169,42 @@ class FrameRenderer {
 
     // Keydown（1枚送り or 押下連続 or 自動開始）
     document.addEventListener("keydown", (ev) => {
-        // リピートは無視（押しっぱは自前ループ）
         if (ev.repeat) return;
 
-        // Ctrl+R → 初期位置（信号0）
-        if ((ev.key === "r" || ev.key === "R") && ev.ctrlKey && !ev.metaKey) {
-            ev.preventDefault();
+        // 何かキーが押されたら、自動パンを止める
+        if (autoMode) {
             autoMode = false;
             stopAllLoops();
+        }
+
+        // Ctrl+R → 初期位置
+        if ((ev.key === "r" || ev.key === "R") && ev.ctrlKey && !ev.metaKey) {
+            ev.preventDefault();
             renderer.requestFrame(0);
             return;
         }
 
-        // N → ティルトリセット（信号5）
+        // N → ティルトリセット
         if (ev.key === "n" && !ev.shiftKey) {
-            autoMode = false; stopAllLoops();
             renderer.requestFrame(5);
             return;
         }
 
-        // Shift+H / Shift+L → 自動パン（4 or 6連続）
+        // Shift+H / Shift+L → 自動パン
         if (ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
-            autoMode = true; stopAllLoops();
+            autoMode = true;
+            stopAllLoops();
             const sig = ev.key === "H" ? 4 : 6;
-            renderer.startAuto(sig, 30); // 80から修正
+            renderer.startAuto(sig, 30);
             return;
         }
 
         // h/j/k/l/i/o → 押している間だけ連続
         const lower = ev.key.toLowerCase();
         if (!ev.shiftKey && KeyToSignal.hasOwnProperty(lower)) {
-            autoMode = false; renderer.stopAuto();
             const sig = KeyToSignal[lower];
-            renderer.startHoldLoop(sig, 30);  // 125から修正
+            renderer.startHoldLoop(sig, 30);
             return;
-    
         }
     });
 
