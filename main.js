@@ -152,11 +152,13 @@ class FrameRenderer {
 
     // ===== 自動パン設定（JSON "auto" フィールド対応） =====
     if ("auto" in mainConf) {
+        stopAllLoops();  // ← ここを追加
         const sig = mainConf.auto ? 6 : 4;
         renderer.startAuto(sig, 30);   // ← 既存の機能を活用
         autoMode = true;
         console.log(`自動パン開始: 信号${sig}`);
     }
+
     // 状態
     let autoMode = false; // 自動パン中か
 
