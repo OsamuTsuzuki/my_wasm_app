@@ -215,7 +215,6 @@ class FrameRenderer {
             renderer.stopHoldLoop();
         }
     });
-
     // ===== マウス操作 → 信号変換 =====
     function getSignalFromMouse(x, y) {
         const w = canvas.width;
