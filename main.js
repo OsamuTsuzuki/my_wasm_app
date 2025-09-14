@@ -208,18 +208,11 @@ class FrameRenderer {
         }
     });
 
-    // Keyup（押下連続の停止、自動はH/Lで止める）
+    // Keyup（押下連続の停止）
     document.addEventListener("keyup", (ev) => {
         const lower = ev.key.toLowerCase();
-
-        // h/j/k/l/i/o の押しっぱ停止
         if (["h","j","k","l","i","o"].includes(lower) && !ev.shiftKey) {
             renderer.stopHoldLoop();
-        }
-
-        // H/L（シフトなし）で自動停止
-        if (["h","l"].includes(lower) && !ev.shiftKey && autoMode) {
-            autoMode = false; renderer.stopAuto();
         }
     });
 
