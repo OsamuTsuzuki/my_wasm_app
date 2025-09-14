@@ -153,6 +153,15 @@ class FrameRenderer {
     document.addEventListener("keydown", stopAutoScroll);
     document.addEventListener("mousedown", stopAutoScroll);
 
+    document.addEventListener("keydown", (e) => {
+        console.log("keydown:", e.key);
+        stopAutoScroll();
+    });
+    document.addEventListener("mousedown", (e) => {
+        console.log("mousedown");
+        stopAutoScroll();
+    });
+
     // ===== 自動パン設定（JSON "auto" フィールド対応） =====
     if ("auto" in mainConf) {
         stopAllLoops();  // ← ここを追加
@@ -172,9 +181,10 @@ class FrameRenderer {
 
     function stopAutoScroll() {
         if (autoMode) {
-            stopAllLoops();
+            console.log("stopAutoScroll() 発火");
+            stopAllLoops();      // すべてのアニメーションループを停止
+            renderer.stopAuto(); // 自動パン専用の停止処理を呼ぶ（必要なら）
             autoMode = false;
-            console.log("自動パンをユーザー操作で停止");
         }
     }
 
