@@ -150,27 +150,24 @@ class FrameRenderer {
     // 起動時：初期画像（信号0）
     await renderer.requestFrame(0);
 
-    document.addEventListener("keydown", stopAutoScroll);
-    document.addEventListener("mousedown", stopAutoScroll);
-
-    document.addEventListener("keydown", (e) => {
+    // PC: キーボード・マウス
+    window.addEventListener("keydown", (e) => {
         console.log("keydown:", e.key);
         stopAutoScroll();
     });
-    document.addEventListener("mousedown", (e) => {
+    window.addEventListener("mousedown", (e) => {
         console.log("mousedown");
         stopAutoScroll();
     });
 
-    // ===== 自動パン設定（JSON "auto" フィールド対応） =====
-    if ("auto" in mainConf) {
-        stopAllLoops();  // ← ここを追加
-        const sig = mainConf.auto ? 6 : 4;
-        renderer.startAuto(sig, 30);
-        autoMode = true;
-        console.log(`自動パン開始: 信号${sig}`);
-    }
-
+// ===== 自動パン設定（JSON "auto" フィールド対応） =====
+if ("auto" in mainConf) {
+    stopAllLoops();
+    const sig = mainConf.auto ? 6 : 4;
+    renderer.startAuto(sig, 30);
+    autoMode = true;
+    console.log(`自動パン開始: 信号${sig}`);
+}
     // 状態
     let autoMode = false; // 自動パン中か
 
@@ -179,11 +176,12 @@ class FrameRenderer {
         renderer.stopAuto();
     }
 
+    // 停止処理
     function stopAutoScroll() {
         if (autoMode) {
             console.log("stopAutoScroll() 発火");
-            stopAllLoops();      // すべてのアニメーションループを停止
-            renderer.stopAuto(); // 自動パン専用の停止処理を呼ぶ（必要なら）
+            stopAllLoops();
+            if (renderer.stopAuto) renderer.stopAuto(); // あれば呼ぶ
             autoMode = false;
         }
     }
@@ -339,5 +337,10 @@ class FrameRenderer {
             renderer.stopHoldLoop();
         }
     }, { passive: true });
+
+    window.addEventListener("touchstart", (e) => {
+        console.log("touchstart");
+        stopAutoScroll();
+    });
 
 })();
