@@ -167,14 +167,18 @@ if ("auto" in mainConf) {
     renderer.startAuto(sig, 30);
     autoMode = true;
     console.log(`自動パン開始: 信号${sig}`);
+} else {
+    autoMode = false;  // これを忘れない
 }
     // 状態
     let autoMode = false; // 自動パン中か
 
-    function stopAllLoops() {
-        renderer.stopHoldLoop();
-        renderer.stopAuto();
-    }
+// 共通の停止処理
+function stopAllLoops() {
+    renderer.stopHoldLoop();
+    renderer.stopAuto();
+    autoMode = false;
+}
 
     // 停止処理
     function stopAutoScroll() {
