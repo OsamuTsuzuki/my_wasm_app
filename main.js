@@ -150,6 +150,23 @@ class FrameRenderer {
     // 起動時：初期画像（信号0）
     await renderer.requestFrame(0);
 
+// 共通の停止処理
+function stopAllLoops() {
+    renderer.stopHoldLoop();
+    renderer.stopAuto();
+    autoMode = false;
+}
+
+// 停止処理
+function stopAutoScroll() {
+    if (autoMode) {
+        console.log("stopAutoScroll() 発火");
+        stopAllLoops();
+        if (renderer.stopAuto) renderer.stopAuto(); // あれば呼ぶ
+        autoMode = false;
+    }
+}
+
     // PC: キーボード・マウス
     window.addEventListener("keydown", (e) => {
         console.log("keydown:", e.key);
@@ -172,23 +189,6 @@ if ("auto" in mainConf) {
 }
     // 状態
     let autoMode = false; // 自動パン中か
-
-// 共通の停止処理
-function stopAllLoops() {
-    renderer.stopHoldLoop();
-    renderer.stopAuto();
-    autoMode = false;
-}
-
-    // 停止処理
-    function stopAutoScroll() {
-        if (autoMode) {
-            console.log("stopAutoScroll() 発火");
-            stopAllLoops();
-            if (renderer.stopAuto) renderer.stopAuto(); // あれば呼ぶ
-            autoMode = false;
-        }
-    }
 
     // Keydown（1枚送り or 押下連続 or 自動開始）
     document.addEventListener("keydown", (ev) => {
