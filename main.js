@@ -167,15 +167,6 @@ function stopAutoScroll() {
     }
 }
 
-    // PC: キーボード・マウス
-    window.addEventListener("keydown", (e) => {
-        console.log("keydown:", e.key);
-        stopAutoScroll();
-    });
-    window.addEventListener("mousedown", (e) => {
-        console.log("mousedown");
-        stopAutoScroll();
-    });
 
 // ===== 自動パン設定（JSON "auto" フィールド対応） =====
 if ("auto" in mainConf) {
@@ -346,5 +337,16 @@ if ("auto" in mainConf) {
         console.log("touchstart");
         stopAutoScroll();
     });
+
+    // PC: キーボード・マウス
+    window.addEventListener("keydown", (e) => {
+        console.log("keydown:", e.key);
+        stopAutoScroll();
+    });
+    window.addEventListener("mousedown", (e) => {
+        console.log("mousedown");
+        stopAutoScroll();
+    });
+
 
 })();
