@@ -34,12 +34,12 @@ window.addEventListener("keydown", (e) => {
     console.log("[DEBUG] keydown 捕捉:", e.key);
 });
 
-window.addEventListener("mousedown", () => {
-    console.log("[DEBUG] mousedown 捕捉");
+window.addEventListener("mousedown", (e) => {
+    console.log("[DEBUG] mousedown: 捕捉", e.button);
 });
 
-window.addEventListener("touchstart", () => {
-    console.log("[DEBUG] touchstart 捕捉");
+window.addEventListener("touchstart", (e) => {
+    console.log("[DEBUG] touchstart: 捕捉", e.touches.length);
 });
 </script>
 
