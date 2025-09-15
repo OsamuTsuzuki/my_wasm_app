@@ -162,7 +162,7 @@ function stopAutoScroll() {
     if (autoMode) {
         console.log("stopAutoScroll() 発火");
         stopAllLoops();
-        if (renderer.stopAuto) renderer.stopAuto(); // あれば呼ぶ
+        if (renderer.stopAuto) renderer.stopAuto();
         autoMode = false;
     }
 }
