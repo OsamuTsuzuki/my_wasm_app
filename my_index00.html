@@ -28,6 +28,21 @@
         <div id="helpText" hidden data-include="partials/help.html"></div>
         <div data-include="partials/footer.html"></div>
     </div>
+
+<script>
+window.addEventListener("keydown", (e) => {
+    console.log("[DEBUG] keydown 捕捉:", e.key);
+});
+
+window.addEventListener("mousedown", () => {
+    console.log("[DEBUG] mousedown 捕捉");
+});
+
+window.addEventListener("touchstart", () => {
+    console.log("[DEBUG] touchstart 捕捉");
+});
+</script>
+
     <script type="module" src="common.js"></script>
 </body>
 </html>
