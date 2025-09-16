@@ -184,9 +184,14 @@ if ("auto" in mainConf) {
     // 状態
     //let autoMode = false; // 自動パン中か
 
+window.addEventListener("keydown", (e) => {
+    console.log("[DEBUG] raw keydown:", e.key, "shift?", e.shiftKey, "ctrl?", e.ctrlKey, "meta?", e.metaKey);
+});
+
+
     // Keydown（1枚送り or 押下連続 or 自動開始）
     document.addEventListener("keydown", (ev) => {
-        // if (ev.repeat) return;  // kokoko
+        if (ev.repeat) return;  // kokoko
 
         // 何かキーが押されたら、自動パンを止める
         if (autoMode) {
