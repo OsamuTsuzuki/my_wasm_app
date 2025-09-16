@@ -182,7 +182,7 @@ if ("auto" in mainConf) {
     autoMode = false;  // これを忘れない
 }
     // 状態
-    let autoMode = false; // 自動パン中か
+    //let autoMode = false; // 自動パン中か
 
     // Keydown（1枚送り or 押下連続 or 自動開始）
     document.addEventListener("keydown", (ev) => {
