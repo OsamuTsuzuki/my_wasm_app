@@ -167,6 +167,8 @@ function stopAutoScroll() {
         stopAllLoops();
         if (renderer.stopAuto) renderer.stopAuto();
         autoMode = false;
+    } else {
+        console.log("[DEBUG] stop by key, but autoMode was false");
     }
 }
 
