@@ -186,7 +186,7 @@ if ("auto" in mainConf) {
 
     // Keydown（1枚送り or 押下連続 or 自動開始）
     document.addEventListener("keydown", (ev) => {
-        if (ev.repeat) return;
+        // if (ev.repeat) return;  // kokoko
 
         // 何かキーが押されたら、自動パンを止める
         if (autoMode) {
