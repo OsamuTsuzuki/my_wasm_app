@@ -1,5 +1,8 @@
 import init, { pre_process, next_frame } from "./pkg/flip_book.js";
 
+let renderer;
+let autoMode = false;
+
 // ===== ユーティリティ =====
 async function loadJsonConfig(url) {
     const res = await fetch(url);
