@@ -194,10 +194,10 @@ window.addEventListener("keydown", (e) => {
         if (ev.repeat) return;  // kokoko
 
         // 何かキーが押されたら、自動パンを止める
-        if (autoMode) {
-            autoMode = false;
-            stopAllLoops();
-        }
+        //if (autoMode) {
+        //    autoMode = false;
+        //    stopAllLoops();
+        //}
 
         // Ctrl+R → 初期位置
         if ((ev.key === "r" || ev.key === "R") && ev.ctrlKey && !ev.metaKey) {
@@ -219,6 +219,12 @@ window.addEventListener("keydown", (e) => {
             const sig = ev.key === "H" ? 4 : 6;
             renderer.startAuto(sig, 30);
             return;
+        }
+
+        // 何かキーが押されたら、自動パンを止める
+        if (autoMode) {
+            autoMode = false;
+            stopAllLoops();
         }
 
         // h/j/k/l/i/o → 押している間だけ連続
