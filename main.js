@@ -192,7 +192,7 @@ if ("auto" in mainConf) {
 
         // Shift+H / Shift+L → 自動パン
         if (ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
-            console.log("[DEBUG] raw keydown:", e.key, "shift?", e.shiftKey, "ctrl?", e.ctrlKey, "meta?", e.metaKey);
+            console.log("[DEBUG] raw keydown:", ev.key, "shift?", ev.shiftKey, "ctrl?", ev.ctrlKey, "meta?", ev.metaKey);
             autoMode = true;
             stopAllLoops();
             const sig = ev.key === "H" ? 4 : 6;
