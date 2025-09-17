@@ -162,7 +162,7 @@ function stopAllLoops() {
 
 // 停止処理
 function stopAutoScroll() {
-    console.log("stopAutoScroll() 発火");
+    console.log("stopAutoScroll() 発火 ******************************************");
     stopAllLoops();
     if (renderer.stopAuto) renderer.stopAuto();
     autoMode = false;
@@ -181,9 +181,9 @@ if ("auto" in mainConf) {
     // 状態
     //let autoMode = false; // 自動パン中か
 
-window.addEventListener("keydown", (e) => {
-    console.log("[DEBUG] raw keydown:", e.key, "shift?", e.shiftKey, "ctrl?", e.ctrlKey, "meta?", e.metaKey);
-});
+//window.addEventListener("keydown", (e) => {
+//    console.log("[DEBUG] raw keydown:", e.key, "shift?", e.shiftKey, "ctrl?", e.ctrlKey, "meta?", e.metaKey);
+//});
 
 
     // Keydown（1枚送り or 押下連続 or 自動開始）
@@ -192,6 +192,7 @@ window.addEventListener("keydown", (e) => {
 
         // Shift+H / Shift+L → 自動パン
         if (ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
+            console.log("[DEBUG] raw keydown:", e.key, "shift?", e.shiftKey, "ctrl?", e.ctrlKey, "meta?", e.metaKey);
             autoMode = true;
             stopAllLoops();
             const sig = ev.key === "H" ? 4 : 6;
