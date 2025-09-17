@@ -2,6 +2,7 @@ import init, { pre_process, next_frame } from "./pkg/flip_book.js";
 
 let renderer;
 let autoMode = false;
+let onece = true;
 
 // ===== ユーティリティ =====
 async function loadJsonConfig(url) {
@@ -196,7 +197,8 @@ window.addEventListener("keydown", (e) => {
         // if (ev.repeat) return;  // kokoko
 
         // Shift+H / Shift+L → 自動パン
-        if (ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
+        if (onece && ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
+            onece = false;
             autoMode = true;
             stopAllLoops();
             const sig = ev.key === "H" ? 4 : 6;
