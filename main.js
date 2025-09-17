@@ -2,6 +2,7 @@ import init, { pre_process, next_frame } from "./pkg/flip_book.js";
 
 let renderer;
 let autoMode = false;
+let once = true;
 
 // ===== ユーティリティ =====
 async function loadJsonConfig(url) {
@@ -186,23 +187,19 @@ if ("auto" in mainConf) {
         // if (ev.repeat) return;
 
         // Shift+H / Shift+L → 自動パン
-        if (ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
+        if (once && ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
+            once = false;
             console.log("[DEBUG] raw keydown:", ev.key, "shift?", ev.shiftKey, "ctrl?", ev.ctrlKey, "meta?", ev.metaKey);
-            if (autoMode) {
-                // すでに自動パン中なら停止
-                stopAutoScroll();
-            } else {
-                // 自動パン開始
-                autoMode = true;
-                stopAllLoops();
-                const sig = ev.key === "H" ? 4 : 6;
-                renderer.startAuto(sig, 30);
-            }
-            return;
+            autoMode = true;
+            stopAllLoops();
+            const sig = ev.key === "H" ? 4 : 6;
+            renderer.startAuto(sig, 30);
+            return;  // ← ここで抜けるので停止処理には入らない
         }
 
         // 何かキーが押されたら、自動パンを止める
         if (autoMode) {
+            console.log("[DEBUG] 自動パン停止: 任意キー", ev.key);
             stopAutoScroll();
             return;
         }
