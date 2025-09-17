@@ -181,11 +181,6 @@ if ("auto" in mainConf) {
     // 状態
     //let autoMode = false; // 自動パン中か
 
-//window.addEventListener("keydown", (e) => {
-//    console.log("[DEBUG] raw keydown:", e.key, "shift?", e.shiftKey, "ctrl?", e.ctrlKey, "meta?", e.metaKey);
-//});
-
-
     // Keydown（1枚送り or 押下連続 or 自動開始）
     document.addEventListener("keydown", (ev) => {
         // if (ev.repeat) return;
@@ -201,10 +196,10 @@ if ("auto" in mainConf) {
         }
 
         // 何かキーが押されたら、自動パンを止める
-        //if (autoMode) {
-        //    autoMode = false;
-        //    stopAllLoops();
-        //}
+        if (autoMode) {
+            autoMode = false;
+            stopAllLoops();
+        }
 
         // Ctrl+R → 初期位置
         if ((ev.key === "r" || ev.key === "R") && ev.ctrlKey && !ev.metaKey) {
@@ -347,10 +342,19 @@ if ("auto" in mainConf) {
     });
 
     // PC: キーボード
-    window.addEventListener("keydown", (e) => {
-        console.log("keydown:", e.key);
+window.addEventListener("keydown", (e) => {
+    console.log("keydown:", e.key);
+
+    // Shift+H/L は「起動用キー」なので停止処理をスキップ
+    if (e.shiftKey && (e.key === "H" || e.key === "L")) {
+        return;
+    }
+
+    // それ以外のキーが押されたときだけ停止
+    if (autoMode) {
         stopAutoScroll();
-    });
+    }
+});
 
     // PC: マウス
     window.addEventListener("mousedown", (e) => {
