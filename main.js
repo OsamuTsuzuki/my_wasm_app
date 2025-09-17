@@ -188,17 +188,23 @@ if ("auto" in mainConf) {
         // Shift+H / Shift+L → 自動パン
         if (ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
             console.log("[DEBUG] raw keydown:", ev.key, "shift?", ev.shiftKey, "ctrl?", ev.ctrlKey, "meta?", ev.metaKey);
-            autoMode = true;
-            stopAllLoops();
-            const sig = ev.key === "H" ? 4 : 6;
-            renderer.startAuto(sig, 30);
+            if (autoMode) {
+                // すでに自動パン中なら停止
+                stopAutoScroll();
+            } else {
+                // 自動パン開始
+                autoMode = true;
+                stopAllLoops();
+                const sig = ev.key === "H" ? 4 : 6;
+                renderer.startAuto(sig, 30);
+            }
             return;
         }
 
         // 何かキーが押されたら、自動パンを止める
         if (autoMode) {
-            autoMode = false;
-            stopAllLoops();
+            stopAutoScroll();
+            return;
         }
 
         // Ctrl+R → 初期位置
