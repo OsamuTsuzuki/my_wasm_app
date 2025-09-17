@@ -193,26 +193,7 @@ window.addEventListener("keydown", (e) => {
 
     // Keydown（1枚送り or 押下連続 or 自動開始）
     document.addEventListener("keydown", (ev) => {
-        if (ev.repeat) return;  // kokoko
-
-        // 何かキーが押されたら、自動パンを止める
-        //if (autoMode) {
-        //    autoMode = false;
-        //    stopAllLoops();
-        //}
-
-        // Ctrl+R → 初期位置
-        if ((ev.key === "r" || ev.key === "R") && ev.ctrlKey && !ev.metaKey) {
-            ev.preventDefault();
-            renderer.requestFrame(0);
-            return;
-        }
-
-        // N → ティルトリセット
-        if (ev.key === "n" && !ev.shiftKey) {
-            renderer.requestFrame(5);
-            return;
-        }
+        // if (ev.repeat) return;  // kokoko
 
         // Shift+H / Shift+L → 自動パン
         if (ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
@@ -227,6 +208,19 @@ window.addEventListener("keydown", (e) => {
         if (autoMode) {
             autoMode = false;
             stopAllLoops();
+        }
+
+        // Ctrl+R → 初期位置
+        if ((ev.key === "r" || ev.key === "R") && ev.ctrlKey && !ev.metaKey) {
+            ev.preventDefault();
+            renderer.requestFrame(0);
+            return;
+        }
+
+        // N → ティルトリセット
+        if (ev.key === "n" && !ev.shiftKey) {
+            renderer.requestFrame(5);
+            return;
         }
 
         // h/j/k/l/i/o → 押している間だけ連続
@@ -245,6 +239,7 @@ window.addEventListener("keydown", (e) => {
             renderer.stopHoldLoop();
         }
     });
+
     // ===== マウス操作 → 信号変換 =====
     function getSignalFromMouse(x, y) {
         const w = canvas.width;
