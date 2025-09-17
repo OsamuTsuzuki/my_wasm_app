@@ -2,7 +2,6 @@ import init, { pre_process, next_frame } from "./pkg/flip_book.js";
 
 let renderer;
 let autoMode = false;
-let onece = true;
 
 // ===== ユーティリティ =====
 async function loadJsonConfig(url) {
@@ -163,16 +162,11 @@ function stopAllLoops() {
 
 // 停止処理
 function stopAutoScroll() {
-    if (autoMode) {
-        console.log("stopAutoScroll() 発火");
-        stopAllLoops();
-        if (renderer.stopAuto) renderer.stopAuto();
-        autoMode = false;
-    } else {
-        console.log("[DEBUG] stop by key, but autoMode was false");
-    }
+    console.log("stopAutoScroll() 発火");
+    stopAllLoops();
+    if (renderer.stopAuto) renderer.stopAuto();
+    autoMode = false;
 }
-
 
 // ===== 自動パン設定（JSON "auto" フィールド対応） =====
 if ("auto" in mainConf) {
@@ -194,11 +188,10 @@ window.addEventListener("keydown", (e) => {
 
     // Keydown（1枚送り or 押下連続 or 自動開始）
     document.addEventListener("keydown", (ev) => {
-        // if (ev.repeat) return;  // kokoko
+        // if (ev.repeat) return;
 
         // Shift+H / Shift+L → 自動パン
-        if (onece && ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
-            onece = false;
+        if (ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
             autoMode = true;
             stopAllLoops();
             const sig = ev.key === "H" ? 4 : 6;
@@ -207,10 +200,10 @@ window.addEventListener("keydown", (e) => {
         }
 
         // 何かキーが押されたら、自動パンを止める
-        if (autoMode) {
-            autoMode = false;
-            stopAllLoops();
-        }
+        //if (autoMode) {
+        //    autoMode = false;
+        //    stopAllLoops();
+        //}
 
         // Ctrl+R → 初期位置
         if ((ev.key === "r" || ev.key === "R") && ev.ctrlKey && !ev.metaKey) {
@@ -346,20 +339,22 @@ window.addEventListener("keydown", (e) => {
         }
     }, { passive: true });
 
+    // スマホ: フィンガータッチ(スワイプ・ピンチ)
     window.addEventListener("touchstart", (e) => {
         console.log("touchstart");
         stopAutoScroll();
     });
 
-    // PC: キーボード・マウス
+    // PC: キーボード
     window.addEventListener("keydown", (e) => {
         console.log("keydown:", e.key);
         stopAutoScroll();
     });
+
+    // PC: マウス
     window.addEventListener("mousedown", (e) => {
         console.log("mousedown");
         stopAutoScroll();
     });
-
 
 })();
