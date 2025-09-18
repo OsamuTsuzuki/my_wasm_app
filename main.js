@@ -1,7 +1,7 @@
 import init, { pre_process, next_frame } from "./pkg/flip_book.js";
 
 let renderer;
-let autoMode;
+let autoMode = true;
 let once = true;
 
 // ===== ユーティリティ =====
@@ -194,7 +194,7 @@ if ("auto" in mainConf) {
             stopAllLoops();
             const sig = ev.key === "H" ? 4 : 6;
             renderer.startAuto(sig, 30);
-            return;  // ← ここで抜けるので停止処理には入らない
+            return;
         }
 
         // 何かキーが押されたら、自動パンを止める
@@ -261,7 +261,8 @@ if ("auto" in mainConf) {
         const y = ev.clientY - rect.top;
         const sig = getSignalFromMouse(x, y);
 
-        autoMode = false; stopAllLoops();
+        autoMode = false;
+        stopAllLoops();
         renderer.startHoldLoop(sig, 30);  // ← キー操作と同じ方式
     });
 
