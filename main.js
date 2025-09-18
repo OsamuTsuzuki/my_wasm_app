@@ -1,7 +1,7 @@
 import init, { pre_process, next_frame } from "./pkg/flip_book.js";
 
 let renderer;
-let autoMode = false;
+let autoMode;
 let once = true;
 
 // ===== ユーティリティ =====
@@ -177,10 +177,10 @@ if ("auto" in mainConf) {
     autoMode = true;
     console.log(`自動パン開始: 信号${sig}`);
 //} else {
-    //autoMode = false;  // これを忘れない
+    //auto Mode = false;  // これを忘れない
 }
     // 状態
-    //let autoMode = false; // 自動パン中か
+    //let auto Mode = false; // 自動パン中か
 
     // Keydown（1枚送り or 押下連続 or 自動開始）
     document.addEventListener("keydown", (ev) => {
@@ -213,14 +213,6 @@ if ("auto" in mainConf) {
 
         // N → ティルトリセット
         if (ev.key === "n" && !ev.shiftKey) {
-            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
-            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
-            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
-            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
-            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
-            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
-            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
-            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
             renderer.requestFrame(5);
             return;
         }
