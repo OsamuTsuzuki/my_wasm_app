@@ -213,6 +213,14 @@ if ("auto" in mainConf) {
 
         // N → ティルトリセット
         if (ev.key === "n" && !ev.shiftKey) {
+            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
+            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
+            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
+            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
+            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
+            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
+            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
+            console.log("[DEBUG] autoMode +++++++++++++++++++++++++++++", autoMode);
             renderer.requestFrame(5);
             return;
         }
