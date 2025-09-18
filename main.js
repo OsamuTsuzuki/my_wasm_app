@@ -1,7 +1,7 @@
 import init, { pre_process, next_frame } from "./pkg/flip_book.js";
 
 let renderer;
-// let autoMode = false;
+let autoMode = false;
 let once = true;
 
 // ===== ユーティリティ =====
