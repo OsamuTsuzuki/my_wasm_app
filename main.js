@@ -70,7 +70,7 @@ class FrameRenderer {
             console.log("処理時間:", end - start, "ms");
             // console.log("RUST_MARK =", globalThis.RUST_MARK);
             if (rgba.length === 0) {
-                console.log("フレームスキップ");
+                // console.log("フレームスキップ");
                 return; // 前のフレームを維持（描画しない）
             }
             // 描画
@@ -162,7 +162,7 @@ function stopAllLoops() {
 
 // 停止処理
 function stopAutoScroll() {
-    console.log("stopAutoScroll() 発火 ******************************************");
+    // console.log("stopAutoScroll() 発火");
     stopAllLoops();
     if (renderer.stopAuto) renderer.stopAuto();
     autoMode = false;
@@ -174,7 +174,7 @@ if ("auto" in mainConf) {
     const sig = mainConf.auto ? 6 : 4;
     renderer.startAuto(sig, 30);
     autoMode = true;
-    console.log(`自動パン開始: 信号${sig}`);
+    // console.log(`自動パン開始: 信号${sig}`);
 //} else {
     //auto Mode = false;  // これを忘れない
 }
@@ -187,7 +187,7 @@ if ("auto" in mainConf) {
 
         // Shift+H / Shift+L → 自動パン
         if (ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
-            console.log("[DEBUG] raw keydown:", ev.key, "shift?", ev.shiftKey, "ctrl?", ev.ctrlKey, "meta?", ev.metaKey);
+            // console.log("[DEBUG] raw keydown:", ev.key, "shift?", ev.shiftKey, "ctrl?", ev.ctrlKey, "meta?", ev.metaKey);
             autoMode = true;
             stopAllLoops();
             const sig = ev.key === "H" ? 4 : 6;
@@ -197,7 +197,7 @@ if ("auto" in mainConf) {
 
         // 何かキーが押されたら、自動パンを止める
         if (autoMode) {
-            console.log("[DEBUG] 自動パン停止: 任意キー", ev.key);
+            // console.log("[DEBUG] 自動パン停止: 任意キー", ev.key);
             stopAutoScroll();
             return;
         }
@@ -339,14 +339,13 @@ if ("auto" in mainConf) {
 
     // スマホ: フィンガータッチ(スワイプ・ピンチ)
     window.addEventListener("touchstart", (e) => {
-        console.log("touchstart");
+        // console.log("touchstart");
         stopAutoScroll();
     });
 
     // PC: キーボード
 window.addEventListener("keydown", (e) => {
-    console.log("keydown:", e.key);
-
+    // console.log("keydown:", e.key);
     // Shift+H/L は「起動用キー」なので停止処理をスキップ
     if (e.shiftKey && (e.key === "H" || e.key === "L")) {
         return;
@@ -360,7 +359,7 @@ window.addEventListener("keydown", (e) => {
 
     // PC: マウス
     window.addEventListener("mousedown", (e) => {
-        console.log("mousedown");
+        // console.log("mousedown");
         stopAutoScroll();
     });
 
