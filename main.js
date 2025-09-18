@@ -176,8 +176,8 @@ if ("auto" in mainConf) {
     renderer.startAuto(sig, 30);
     autoMode = true;
     console.log(`自動パン開始: 信号${sig}`);
-} else {
-    autoMode = false;  // これを忘れない
+//} else {
+    //autoMode = false;  // これを忘れない
 }
     // 状態
     //let autoMode = false; // 自動パン中か
