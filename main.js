@@ -157,7 +157,7 @@ class FrameRenderer {
 function stopAllLoops() {
     renderer.stopHoldLoop();
     renderer.stopAuto();
-    autoMode = false;
+    // autoMode = false;
 }
 
 // 停止処理
@@ -196,7 +196,7 @@ if ("auto" in mainConf) {
         }
 
         // 何かキーが押されたら、自動パンを止める
-        if (ev.key === "h" || ev.key === "l") {
+        if (autoMode) {
             console.log("[DEBUG] 自動パン停止: 任意キー", ev.key);
             stopAutoScroll();
             return;
