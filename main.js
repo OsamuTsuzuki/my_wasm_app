@@ -2,7 +2,6 @@ import init, { pre_process, next_frame } from "./pkg/flip_book.js";
 
 let renderer;
 let autoMode;
-let once = true;
 
 // ===== ユーティリティ =====
 async function loadJsonConfig(url) {
@@ -187,8 +186,7 @@ if ("auto" in mainConf) {
         // if (ev.repeat) return;
 
         // Shift+H / Shift+L → 自動パン
-        if (once && ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
-            once = false;
+        if (ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
             console.log("[DEBUG] raw keydown:", ev.key, "shift?", ev.shiftKey, "ctrl?", ev.ctrlKey, "meta?", ev.metaKey);
             autoMode = true;
             stopAllLoops();
