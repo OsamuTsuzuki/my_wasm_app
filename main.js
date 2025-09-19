@@ -257,7 +257,7 @@ if ("auto" in mainConf) {
         const x = ev.clientX - rect.left;
         const y = ev.clientY - rect.top;
         const sig = getSignalFromMouse(x, y);
-        console.log("canvas mousedown");    // koko
+        console.log("canvas mousedown ********");    // koko
         autoMode = false; stopAllLoops();
         renderer.startHoldLoop(sig, 30);  // ← キー操作と同じ方式
     });
@@ -265,6 +265,7 @@ if ("auto" in mainConf) {
     // マウス離したら停止
     canvas.addEventListener("mouseup", (ev) => {
         if (ev.button !== 0) return;
+        console.log("canvas mouseup ************");  // koko
         renderer.stopHoldLoop();
     });
 
@@ -357,7 +358,7 @@ window.addEventListener("keydown", (e) => {
 
     // PC: マウス
     window.addEventListener("mousedown", (e) => {
-        console.log("window mousedown");
+        console.log("window mousedown ********");  // koko
         stopAutoScroll();
     });
 //window.addEventListener("mousedown", (e) => {
