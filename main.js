@@ -356,9 +356,15 @@ window.addEventListener("keydown", (e) => {
 });
 
     // PC: マウス
-    window.addEventListener("mousedown", (e) => {
-        // console.log("mousedown");
+//    window.addEventListener("mousedown", (e) => {
+//        // console.log("mousedown");
+//        stopAutoScroll();
+//    });
+window.addEventListener("mousedown", (e) => {
+    if (!canvas.contains(e.target)) {
         stopAutoScroll();
-    });
+    }
+});
+
 
 })();
