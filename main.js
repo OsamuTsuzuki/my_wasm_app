@@ -171,12 +171,11 @@ function stopAutoScroll() {
 // ===== 自動パン設定（JSON "auto" フィールド対応） =====
 if ("auto" in mainConf) {
     stopAllLoops();
+    // console.log(`自動パン開始: 信号${sig}`);
     const sig = mainConf.auto ? 6 : 4;
     renderer.startAuto(sig, 30);
     autoMode = true;
-    // console.log(`自動パン開始: 信号${sig}`);
-//} else {
-    //auto Mode = false;  // これを忘れない
+    // } else { autoMode = false;  // 不要(起動時は false)
 }
     // 状態
     //let auto Mode = false; // 自動パン中か
