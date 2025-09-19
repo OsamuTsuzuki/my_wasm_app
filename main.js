@@ -357,15 +357,15 @@ window.addEventListener("keydown", (e) => {
 });
 
     // PC: マウス
-    window.addEventListener("mousedown", (e) => {
-        console.log("window mousedown ********");  // koko
+    //window.addEventListener("mousedown", (e) => {
+    //    console.log("window mousedown ********");  // koko
+    //    stopAutoScroll();
+    //});
+window.addEventListener("mousedown", (e) => {
+    if (canvas.contains(e.target)) {
         stopAutoScroll();
-    });
-//window.addEventListener("mousedown", (e) => {
-//    if (!canvas.contains(e.target)) {
-//        stopAutoScroll();
-//    }
-//});
+    }
+});
 
 
 })();
