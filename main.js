@@ -257,7 +257,6 @@ if ("auto" in mainConf) {
         const x = ev.clientX - rect.left;
         const y = ev.clientY - rect.top;
         const sig = getSignalFromMouse(x, y);
-        console.log("canvas mousedown ********");
         autoMode = false; stopAllLoops();
         renderer.startHoldLoop(sig, 30);  // ← キー操作と同じ方式
         holdLoopActive = true;  // フラグON
@@ -266,7 +265,6 @@ if ("auto" in mainConf) {
     // マウス離したら停止
     canvas.addEventListener("mouseup", (ev) => {
         if (ev.button !== 0) return;
-        console.log("canvas mouseup ************");  // koko
         renderer.stopHoldLoop();
         holdLoopActive = false; // フラグOFF
     });
@@ -332,28 +330,22 @@ if ("auto" in mainConf) {
     }, { passive: true });
 
     // 指を離したら停止（1本でも2本でも止める）
-    //canvas.addEventListener("touchend", (ev) => {
-    //    if (ev.touches.length === 0) {
-    //        renderer.stopHoldLoop();
-    //    }
-    //}, { passive: true });
-canvas.addEventListener("touchend", (ev) => {
-    if (ev.touches.length === 0) {
-        const rect = canvas.getBoundingClientRect();
-        const x = ev.changedTouches[0].clientX;
-        const y = ev.changedTouches[0].clientY;
+    canvas.addEventListener("touchend", (ev) => {
+        if (ev.touches.length === 0) {
+            const rect = canvas.getBoundingClientRect();
+            const x = ev.changedTouches[0].clientX;
+            const y = ev.changedTouches[0].clientY;
 
-        if (x >= rect.left && x <= rect.right &&
-            y >= rect.top && y <= rect.bottom) {
-            // キャンバス内で離したら止める
-            renderer.stopHoldLoop();
-        } else {
-            // キャンバス外なら無視
-            console.log("ignore touchend outside canvas");
+            if (x >= rect.left && x <= rect.right &&
+                y >= rect.top && y <= rect.bottom) {
+                // キャンバス内で離したら止める
+                renderer.stopHoldLoop();
+            } else {
+                // キャンバス外なら無視
+                console.log("ignore touchend outside canvas");
+            }
         }
-    }
-});
-
+    });
 
     // スマホ: フィンガータッチ(スワイプ・ピンチ)
     canvas.addEventListener("touchstart", (e) => {
@@ -361,30 +353,24 @@ canvas.addEventListener("touchend", (ev) => {
     });
 
     // PC: キーボード
-window.addEventListener("keydown", (e) => {
-    // console.log("keydown:", e.key);
-    // Shift+H/L は「起動用キー」なので停止処理をスキップ
-    if (e.shiftKey && (e.key === "H" || e.key === "L")) {
-        return;
-    }
+    window.addEventListener("keydown", (e) => {
+        // console.log("keydown:", e.key);
+        // Shift+H/L は「起動用キー」なので停止処理をスキップ
+        if (e.shiftKey && (e.key === "H" || e.key === "L")) {
+            return;
+        }
 
-    // それ以外のキーが押されたときだけ停止
-    if (autoMode) {
-        stopAutoScroll();
-    }
-});
+        // それ以外のキーが押されたときだけ停止
+        if (autoMode) {
+            stopAutoScroll();
+        }
+    });
 
     // PC: マウス
-    //canvas.addEventListener("mousedown", (e) => {
-    //    console.log("canvas mousedown ********");  // koko
-    //    stopAutoScroll();
-    //});
-canvas.addEventListener("click", (e) => {
-    if (!holdLoopActive) {
-        console.log("canvas click → stopAutoScroll()");
-        stopAutoScroll();
-    }
-});
-
+    canvas.addEventListener("click", (e) => {
+        if (!holdLoopActive) {
+            stopAutoScroll();
+        }
+    });
 
 })();
