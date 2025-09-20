@@ -257,7 +257,7 @@ if ("auto" in mainConf) {
         const x = ev.clientX - rect.left;
         const y = ev.clientY - rect.top;
         const sig = getSignalFromMouse(x, y);
-        console.log("canvas mousedown ********");    // koko
+        console.log("canvas mousedown ********");
         autoMode = false; stopAllLoops();
         renderer.startHoldLoop(sig, 30);  // ← キー操作と同じ方式
     });
