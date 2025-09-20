@@ -268,6 +268,7 @@ if ("auto" in mainConf) {
         if (ev.button !== 0) return;
         console.log("canvas mouseup ************");  // koko
         renderer.stopHoldLoop();
+        holdLoopActive = false; // フラグOFF
     });
 
     // ===== タッチ操作（スマホ用） =====
@@ -339,7 +340,6 @@ if ("auto" in mainConf) {
 
     // スマホ: フィンガータッチ(スワイプ・ピンチ)
     canvas.addEventListener("touchstart", (e) => {
-        // console.log("touchstart");
         stopAutoScroll();
     });
 
