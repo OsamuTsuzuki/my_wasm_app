@@ -332,11 +332,28 @@ if ("auto" in mainConf) {
     }, { passive: true });
 
     // 指を離したら停止（1本でも2本でも止める）
-    canvas.addEventListener("touchend", (ev) => {
-        if (ev.touches.length === 0) {
+    //canvas.addEventListener("touchend", (ev) => {
+    //    if (ev.touches.length === 0) {
+    //        renderer.stopHoldLoop();
+    //    }
+    //}, { passive: true });
+canvas.addEventListener("touchend", (ev) => {
+    if (ev.touches.length === 0) {
+        const rect = canvas.getBoundingClientRect();
+        const x = ev.changedTouches[0].clientX;
+        const y = ev.changedTouches[0].clientY;
+
+        if (x >= rect.left && x <= rect.right &&
+            y >= rect.top && y <= rect.bottom) {
+            // キャンバス内で離したら止める
             renderer.stopHoldLoop();
+        } else {
+            // キャンバス外なら無視
+            console.log("ignore touchend outside canvas");
         }
-    }, { passive: true });
+    }
+});
+
 
     // スマホ: フィンガータッチ(スワイプ・ピンチ)
     canvas.addEventListener("touchstart", (e) => {
