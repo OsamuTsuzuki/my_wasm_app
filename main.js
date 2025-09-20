@@ -2,6 +2,7 @@ import init, { pre_process, next_frame } from "./pkg/flip_book.js";
 
 let renderer;
 let autoMode = false;
+let holdLoopActive = false;
 
 // ===== ユーティリティ =====
 async function loadJsonConfig(url) {
@@ -157,7 +158,6 @@ class FrameRenderer {
 function stopAllLoops() {
     renderer.stopHoldLoop();
     renderer.stopAuto();
-    // autoMode = false;
 }
 
 // 停止処理
@@ -260,6 +260,7 @@ if ("auto" in mainConf) {
         console.log("canvas mousedown ********");
         autoMode = false; stopAllLoops();
         renderer.startHoldLoop(sig, 30);  // ← キー操作と同じ方式
+        holdLoopActive = true;  // フラグON
     });
 
     // マウス離したら停止
@@ -357,15 +358,16 @@ window.addEventListener("keydown", (e) => {
 });
 
     // PC: マウス
-    canvas.addEventListener("mousedown", (e) => {
-        console.log("window mousedown ********");  // koko
+    //canvas.addEventListener("mousedown", (e) => {
+    //    console.log("canvas mousedown ********");  // koko
+    //    stopAutoScroll();
+    //});
+canvas.addEventListener("click", (e) => {
+    if (!holdLoopActive) {
+        console.log("canvas click → stopAutoScroll()");
         stopAutoScroll();
-    });
-//window.addEventListener("mousedown", (e) => {
-//    if (!canvas.contains(e.target)) {
-//        stopAutoScroll();
-//    }
-//});
+    }
+});
 
 
 })();
