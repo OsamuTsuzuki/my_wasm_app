@@ -338,7 +338,7 @@ if ("auto" in mainConf) {
     }, { passive: true });
 
     // スマホ: フィンガータッチ(スワイプ・ピンチ)
-    window.addEventListener("touchstart", (e) => {
+    canvas.addEventListener("touchstart", (e) => {
         // console.log("touchstart");
         stopAutoScroll();
     });
