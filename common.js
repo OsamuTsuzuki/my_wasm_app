@@ -13,7 +13,7 @@ import("./main.js?v=2.0");
         helpToggle?.addEventListener('change', () => { helpText.hidden = !helpToggle.checked; });
 
         document.getElementById('btnReset')?.addEventListener('click', () => {
-            const ev = new KeyboardEvent('keydown', { key: 'r' + ctrlKey: true });
+            const ev = new KeyboardEvent('keydown', { key: 'r', ctrlKey: true });
             document.dispatchEvent(ev);
         });
 })();
