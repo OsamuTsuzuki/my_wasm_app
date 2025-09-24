@@ -10,9 +10,9 @@
         "liminf": 27,
         "ang_x": 0,
         "ang_z": 0,
-        "twidth": 640,
-        "theight": 320,
-        "dhagv": 240,
+        "twidth": 720,
+        "theight": 240,
+        "dhagv": 180,
         "simg": "img_0111x.jpg",
         "str0": "3.,3."
     }
