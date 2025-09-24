@@ -8,10 +8,11 @@
         "liminf": 0,
         "ang_x": 0,
         "ang_z": 0,
-        "twidth": 640,
+        "twidth": 720,
         "theight": 320,
         "dhagv": 190,
         "simg": "dscn2322c.png",
+        "auto": false,
         "str0": "5,5,8,2,8,1",
         "str1": "delta_h,delta_v,nstep1,nstep2,atn(index),resize"
     }
