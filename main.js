@@ -118,7 +118,12 @@ class FrameRenderer {
     console.log("JS: WebAssembly 初期化完了");
 
     // ページ名 → JSON名（settings ディレクトリ）
-    const htmlFilename = window.location.pathname.split("/").pop();
+    let htmlFilename = window.location.pathname.split("/").pop();
+    // .html が無ければ補う
+    if (!htmlFilename.endsWith(".html")) {
+        htmlFilename += ".html";
+    }
+    //const htmlFilename = window.location.pathname.split("/").pop();
     const jsonFilename = htmlFilename.replace(/\.html$/, ".json");
 
     // コンフィグ読み込み
