@@ -4,17 +4,18 @@
         "hosei_mode": 1,
         "upright": false,
         "projection": 5,
-        "rr_u": 50,
-        "hh_u": 230,
+        "optcl0": 50,
+        "optcl1": 230,
         "limsup": 120,
         "liminf": 27,
         "ang_x": 0,
-        "ang_z": 270,
-        "twidth": 640,
+        "ang_z": 0,
+        "twidth": 720,
         "theight": 240,
         "dhagv": 180,
         "simg": "img_0111x.jpg",
         "bg": [255,255,255],
-        "fg": [120,116,114]
+        "fg": [120, 116, 114],
+        "str0": "3.,3."
     }
 ]
