@@ -1,7 +1,7 @@
 [
     {
         "view_mode": 6,
-        "hosei_mode": 0,
+        "hosei_mode": 1,
         "upright": false,
         "projection": 5,
         "optcl0": 50,
@@ -10,8 +10,8 @@
         "liminf": 27,
         "ang_x": 0,
         "ang_z": 60,
-        "twidth": 480,
-        "theight": 480,
+        "twidth": 640,
+        "theight": 240,
         "dhagv": 180,
         "simg": "img_0111x.jpg",
         "bg": [255,255,255],
