@@ -5,7 +5,7 @@
         "upright":  false,
         "projection": 8,
         "optcl0": 0,
-        "optcl1": 38,
+        "optcl1": 3.8,
         "limsup": 120,
         "liminf": 27,
         "ang_x": -90,
