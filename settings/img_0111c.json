@@ -4,7 +4,7 @@
         "hosei_mode": 0,
         "upright":  false,
         "projection": 6,
-        "optcl0": 50,
+        "optcl0": 50.0,
         "optcl1": 230,
         "limsup": 120,
         "liminf": 27,
