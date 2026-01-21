@@ -12,7 +12,6 @@
         "theight": 225,
         "dhagv": 360,
         "simg": "dscn2322c.png",
-        "auto": false,
         "str0": "5,5,8,2,8,1",
         "str1": "delta_h,delta_v,nstep1,nstep2,atn(index),resize"
     }
