@@ -68,7 +68,7 @@ class FrameRenderer {
                 rgba = next_frame();
             }
             let end = performance.now();
-            console.log("処理時間:", end - start, "ms");
+            // console.log("処理時間:", end - start, "ms");
             // console.log("RUST_MARK =", globalThis.RUST_MARK);
             if (rgba.length === 0) {
                 // console.log("フレームスキップ");
@@ -115,7 +115,7 @@ class FrameRenderer {
 // ===== メイン =====
 (async function run() {
     await init();
-    console.log("JS: WebAssembly 初期化完了");
+    // console.log("JS: WebAssembly 初期化完了");
 
     // ページ名 → JSON名（settings ディレクトリ）
     let htmlFilename = window.location.pathname.split("/").pop();
@@ -144,7 +144,7 @@ class FrameRenderer {
     // Rust 前処理
     const configStr = JSON.stringify(configList);
     pre_process(rawImage, configStr, ch);
-    console.log("前処理が正常に完了");
+    // console.log("前処理が正常に完了");
 
     const renderer = new FrameRenderer(canvas);
 
