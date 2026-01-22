@@ -125,8 +125,8 @@ class FrameRenderer {
     }
     //const htmlFilename = window.location.pathname.split("/").pop();
     const jsonFilename = htmlFilename.replace(/\.html$/, ".json");
-    console.log("DEBUG htmlFilename:", htmlFilename);
-    console.log("DEBUG jsonFilename:", jsonFilename);
+    // console.log("DEBUG htmlFilename:", htmlFilename);
+    // console.log("DEBUG jsonFilename:", jsonFilename);
 
     // コンフィグ読み込み
     const configList = await loadJsonConfig(`settings/${jsonFilename}`);
