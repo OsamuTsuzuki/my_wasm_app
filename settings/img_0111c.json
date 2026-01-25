@@ -3,9 +3,9 @@
         "view_mode": 6,
         "hosei_mode": 0,
         "upright":  false,
-        "projection": 8,
-        "optcl0": 0,
-        "optcl1": 3.8,
+        "projection": 5,
+        "optcl0": 50,
+        "optcl1": 230,
         "limsup": 120,
         "liminf": 27,
         "ang_x": -90,
@@ -17,6 +17,6 @@
         "fg": [120,116,114],
         "simg": "img_0111x.jpg",
         "fs_h": 0.5,
-        "str0": "3.,3."
+        "str0": "大雪山 層雲峡温泉 c"
     }
 ]
