@@ -13,7 +13,8 @@
         "dhagv": 190,
         "simg": "sl1500.jpg",
         "auto": false,
-        "str0": "5,5,8,2,8,1",
-        "str1": "delta_h,delta_v,nstep1,nstep2,atn(index),resize"
+        "fs_h": 0.5,
+        "str0": "新横浜歩道橋 P",
+        "str1": "魚眼レンズ 等距離射影"
     }
 ]
