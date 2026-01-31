@@ -3,7 +3,7 @@
         "view_mode": 6,
         "hosei_mode": 1,
         "upright": true,
-        "projection": 0,
+        "projection": 1,
         "limsup": 110,
         "liminf": 0,
         "ang_x": -8,
@@ -14,7 +14,7 @@
         "simg": "sl1500.jpg",
         "auto": false,
         "fs_h": 0.5,
-        "str0": "新横浜歩道橋 P",
+        "str0": "上海高層ビル群 P",
         "str1": "魚眼レンズ 等距離射影"
     }
 ]
