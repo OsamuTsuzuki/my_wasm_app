@@ -4,7 +4,7 @@
         "hosei_mode": 1,
         "upright": true,
         "projection": 3,
-        "limsup": 110,
+        "limsup": 95,
         "liminf": 0,
         "ang_x": -8,
         "ang_z": 0,
