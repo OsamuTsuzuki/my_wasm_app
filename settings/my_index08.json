@@ -1,8 +1,8 @@
 [
     {
         "view_mode": 6,
-        "hosei_mode": 5,
-        "upright": true,
+        "hosei_mode": 4,
+        "upright": false,
         "projection": 0,
         "limsup": 110,
         "liminf": 0,
