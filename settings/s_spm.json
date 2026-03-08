@@ -1,0 +1,20 @@
+[
+    {
+        "view_mode": 6,
+        "hosei_mode": 4,
+        "upright": true,
+        "projection": 0,
+        "limsup": 110,
+        "liminf": 0,
+        "ang_x": -8,
+        "ang_z": 0,
+        "twidth": 900,
+        "theight": 450,
+        "dhagv": 190,
+        "simg": "sl1500.jpg",
+        "fs_h": 0.5,
+        "auto": false,
+        "str0": "上海高層ビル群 P",
+        "str1": "魚眼レンズ 等距離射影"
+    }
+]
