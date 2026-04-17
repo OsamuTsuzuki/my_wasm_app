@@ -2,7 +2,7 @@
     {
         "view_mode": 6,
         "hosei_mode": 0,
-        "upright":  true,
+        "upright":  false,
         "projection": 5,
         "optcl0": 50,
         "optcl1": 230,
