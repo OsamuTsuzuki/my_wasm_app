@@ -2,7 +2,7 @@
     {
         "view_mode": 6,
         "hosei_mode": 1,
-        "upright": true,
+        "upright": false,
         "projection": 0,
         "limsup": 110,
         "liminf": 0,
