@@ -1,0 +1,21 @@
+[
+    {
+        "hosei_mode": 1,
+        "upright": false,
+        "projection": 5,
+        "optcl0": 50,
+        "optcl1": 230,
+        "limsup": 120,
+        "liminf": 21,
+        "ang_x": 0,
+        "ang_z": 276,
+        "twidth": 940,
+        "theight": 400,
+        "dhagv": 180,
+        "simg": "img_1002.jpg",
+        "bg": [255,255,255],
+        "fg": [168,159,144],
+        "str0": "フランス ゴッホの跳ね橋 P",
+        "str1": "球面ミラー"
+    }
+]
