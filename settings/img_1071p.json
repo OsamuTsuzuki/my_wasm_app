@@ -1,0 +1,20 @@
+[
+    {
+        "hosei_mode": 1,
+        "upright": false,
+        "projection": 5,
+        "optcl0": 50,
+        "optcl1": 230,
+        "limsup": 120,
+        "liminf": 0,
+        "ang_x": 0,
+        "ang_z": 0,
+        "twidth": 940,
+        "theight": 400,
+        "dhagv": 140,
+        "simg": "img_1071.jpg",
+        "bg": [255,255,255],
+        "str0": "フランス 大聖堂の庭園 P",
+        "str1": "球面ミラー"
+    }
+]
