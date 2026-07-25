@@ -1,0 +1,21 @@
+[
+    {
+        "hosei_mode": 1,
+        "upright": false,
+        "projection": 4,
+        "optcl0": 37.0,
+        "optcl1": 29.9,
+        "limsup": 105,
+        "liminf": 27,
+        "ang_x": 0,
+        "ang_z": 0,
+        "twidth": 940,
+        "theight": 400,
+        "dhagv": 180,
+        "simg": "img_0844x.jpg",
+        "bg": [255,255,255],
+        "fg": [120,116,114],
+        "str0": "京都 嵐山渡月橋 P",
+        "str1": "総曲面ミラー"
+    }
+]
