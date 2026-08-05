@@ -1,4 +1,5 @@
-import("./main.js?v=2.0");
+import("./main.js?v=3.0");
+console.log("★★★ 最新 common.js が読み込まれました ★★★");
 (async () => {
     const slots = document.querySelectorAll('[data-include]');
     for (const el of slots) {

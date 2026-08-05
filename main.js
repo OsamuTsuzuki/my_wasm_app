@@ -1,4 +1,5 @@
 import init, { pre_process, next_frame } from "./pkg/flip_book.js";
+console.log("★ ★ ★ 最新 main.js が読み込まれました ★ ★ ★k");
 
 let renderer;
 let autoMode = false;
@@ -148,6 +149,40 @@ class FrameRenderer {
 
     const renderer = new FrameRenderer(canvas);
 
+    // koko
+        // ===== 現在表示中の画像をPNG保存 =====
+    function saveCurrentFrameAsPNG() {
+        console.log("★ PNG保存処理 START");
+        canvas.toBlob((blob) => {
+            if (!blob) {
+                console.error("★ blob がありません");
+                // console.error("PNGへの変換に失敗しました");
+                return;
+            }
+            console.log("★ blob size =", blob.size);
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+
+            // ファイル名
+            const now = new Date();
+            const filename =
+                `frame_${now.getHours().toString().padStart(2, "0")}` +
+                `${now.getMinutes().toString().padStart(2, "0")}` +
+                `${now.getSeconds().toString().padStart(2, "0")}.png`;
+
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+
+            URL.revokeObjectURL(url);
+
+            console.log("PNG保存:", filename);
+        }, "image/png");
+    }
+    // koko
+
     // キー → 信号マップ
     const KeyToSignal = {
         "h": 4,
@@ -190,6 +225,32 @@ if ("auto" in mainConf) {
     // Keydown（1枚送り or 押下連続 or 自動開始）
     document.addEventListener("keydown", (ev) => {
         // if (ev.repeat) return;
+
+        // koko
+        // Command + P → 現在表示中の画像をPNG保存
+
+        if (ev.metaKey && ev.shiftKey &&
+            (ev.key === "p" || ev.key === "P")) {
+
+            console.log("★ Command + Shift + P を認識しました");
+
+            ev.preventDefault();
+            saveCurrentFrameAsPNG();
+            return;
+        }
+
+
+        //if (
+        //    (ev.key === "p" || ev.key === "P") &&
+        //    ev.metaKey &&
+        //    ev.shiftKey &&
+        //    !ev.ctrlKey
+        //) {
+        //    ev.preventDefault();
+        //    saveCurrentFrameAsPNG();
+        //    return;
+        //}
+        // koko
 
         // Shift+H / Shift+L → 自動パン
         if (ev.shiftKey && (ev.key === "H" || ev.key === "L")) {
