@@ -10,7 +10,7 @@
         "ang_x": 0,
         "ang_z": 10,
         "twidth": 1024,
-        "theight": 256,
+        "theight": 128,
         "dhagv": 180,
         "simg": "img_0844x.jpg",
         "bg": [255,255,255],
